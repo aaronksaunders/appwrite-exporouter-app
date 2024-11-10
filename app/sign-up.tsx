@@ -4,42 +4,45 @@ import { useState } from "react";
 import { useSession } from "@/context";
 
 /**
- * SignIn component handles user authentication through email and password
- * @returns {JSX.Element} Sign-in form component
+ * SignUp component handles new user registration
+ * @returns {JSX.Element} Sign-up form component
  */
-export default function SignIn() {
+export default function SignUp() {
   // ============================================================================
   // Hooks & State
   // ============================================================================
   
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { signIn } = useSession();
+  const [name, setName] = useState("");
+  const { signUp } = useSession();
 
   // ============================================================================
   // Handlers
   // ============================================================================
 
   /**
-   * Handles the sign-in process
+   * Handles the registration process
    * @returns {Promise<Models.User<Models.Preferences> | null>}
    */
-  const handleLogin = async () => {
+  const handleRegister = async () => {
     try {
-      return await signIn(email, password);
+      return await signUp(email, password, name);
     } catch (err) {
-      console.log("[handleLogin] ==>", err);
+      console.log("[handleRegister] ==>", err);
       return null;
     }
   };
 
   /**
-   * Handles the sign-in button press
+   * Handles the sign-up button press
    */
-  const handleSignInPress = async () => {
-    const resp = await handleLogin();
-    console.log("[SignIn] resp ==>", resp);
-    router.replace("/(app)/(drawer)/(tabs)/");
+  const handleSignUpPress = async () => {
+    const resp = await handleRegister();
+    console.log("[SignUp] resp ==>", resp);
+    if (resp) {
+      router.replace("/(app)/(drawer)/(tabs)/");
+    }
   };
 
   // ============================================================================
@@ -51,15 +54,29 @@ export default function SignIn() {
       {/* Welcome Section */}
       <View className="items-center mb-8">
         <Text className="text-2xl font-bold text-gray-800 mb-2">
-          Welcome Back
+          Create Account
         </Text>
         <Text className="text-sm text-gray-500">
-          Please sign in to continue
+          Sign up to get started
         </Text>
       </View>
 
       {/* Form Section */}
       <View className="w-full max-w-[300px] space-y-4 mb-8">
+        <View>
+          <Text className="text-sm font-medium text-gray-700 mb-1 ml-1">
+            Name
+          </Text>
+          <TextInput
+            placeholder="Your full name"
+            value={name}
+            onChangeText={setName}
+            textContentType="name"
+            autoCapitalize="words"
+            className="w-full p-3 border border-gray-300 rounded-lg text-base bg-white"
+          />
+        </View>
+
         <View>
           <Text className="text-sm font-medium text-gray-700 mb-1 ml-1">
             Email
@@ -80,32 +97,32 @@ export default function SignIn() {
             Password
           </Text>
           <TextInput
-            placeholder="Your password"
+            placeholder="Create a password"
             value={password}
             onChangeText={setPassword}
             secureTextEntry
-            textContentType="password"
+            textContentType="newPassword"
             className="w-full p-3 border border-gray-300 rounded-lg text-base bg-white"
           />
         </View>
       </View>
 
-      {/* Sign In Button */}
+      {/* Sign Up Button */}
       <Pressable
-        onPress={handleSignInPress}
+        onPress={handleSignUpPress}
         className="bg-blue-600 w-full max-w-[300px] py-3 rounded-lg active:bg-blue-700"
       >
         <Text className="text-white font-semibold text-base text-center">
-          Sign In
+          Sign Up
         </Text>
       </Pressable>
 
-      {/* Sign Up Link */}
+      {/* Sign In Link */}
       <View className="flex-row items-center mt-6">
-        <Text className="text-gray-600">Don't have an account?</Text>
-        <Link href="/sign-up" asChild>
+        <Text className="text-gray-600">Already have an account?</Text>
+        <Link href="/sign-in" asChild>
           <Pressable className="ml-2">
-            <Text className="text-blue-600 font-semibold">Sign Up</Text>
+            <Text className="text-blue-600 font-semibold">Sign In</Text>
           </Pressable>
         </Link>
       </View>
