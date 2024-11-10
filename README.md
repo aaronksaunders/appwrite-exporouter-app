@@ -1,56 +1,107 @@
-# Welcome to your Expo app 👋
+# Expo Authentication App 🔐
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A modern authentication application built with [Expo](https://expo.dev), featuring a complete authentication flow using [Appwrite](https://appwrite.io) as the backend service.
 
-## Get started
+## Features
 
-1. Install dependencies
+- 🔒 Complete authentication flow
+  - User sign-in
+  - User registration
+  - Secure session management
+  - Logout functionality
+- 📱 Modern UI with Tailwind CSS
+- 🎯 TypeScript for type safety
+- 📁 Organized file structure with Expo Router
+- 🔄 Context-based state management
 
+## Project Structure
+
+```
+app/
+├── (app)/                   # Protected app routes
+│   ├── (drawer)/           # Drawer navigation
+│   │   └── (tabs)/         # Tab navigation
+│   │       └── index.tsx   # Home screen
+│   └── _layout.tsx         # App layout with auth protection
+├── sign-in.tsx             # Sign in screen
+├── sign-up.tsx             # Sign up screen
+└── _layout.tsx             # Root layout
+```
+
+## Getting Started
+
+1. Clone the repository
+   ```bash
+   git clone [repository-url]
+   ```
+
+2. Install dependencies
    ```bash
    npm install
    ```
 
-2. Start the app
-
-   ```bash
-    npx expo start
+3. Set up environment variables
+   Create a `.env` file with your Appwrite credentials:
+   ```env
+   EXPO_PUBLIC_APPWRITE_ENDPOINT=your-endpoint
+   EXPO_PUBLIC_APPWRITE_PROJECT_ID=your-project-id
    ```
 
-In the output, you'll find options to open the app in a
+4. Start the development server
+   ```bash
+   npx expo start
+   ```
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## Technology Stack
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+- **Frontend Framework**: Expo/React Native
+- **Styling**: Tailwind CSS (via NativeWind)
+- **Navigation**: Expo Router
+- **Backend**: Appwrite
+- **Language**: TypeScript
+- **State Management**: React Context
 
-## Get a fresh project
+## Key Components
 
-When you're ready, run:
+- **Authentication Context**: Manages user session state and auth operations
+- **Protected Routes**: Automatic redirection for unauthenticated users
+- **Drawer Navigation**: Side menu for app navigation
+- **Tab Navigation**: Bottom tabs for main app sections
 
-```bash
-npm run reset-project
-```
+## Development
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+To start developing:
 
-## Learn more
+1. Run the development server:
+   ```bash
+   npx expo start
+   ```
 
-To learn more about developing your project with Expo, look at the following resources:
+2. Choose your preferred development environment:
+   - Press `i` for iOS simulator
+   - Press `a` for Android emulator
+   - Scan QR code with Expo Go app for physical device
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+## Contributing
 
-## Join the community
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-Join our community of developers creating universal apps.
+## Learn More
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+- [Expo Documentation](https://docs.expo.dev/)
+- [Appwrite Documentation](https://appwrite.io/docs)
+- [NativeWind Documentation](https://www.nativewind.dev/getting-started/expo-router)
+- [Expo Router Documentation](https://docs.expo.dev/router/introduction/)
 
-https://www.nativewind.dev/getting-started/expo-router
-https://www.nativewind.dev/getting-started/typescript
+## GitHub Issues Referenced
+
+- https://github.com/react-navigation/react-navigation/issues/12237
 
 
-https://github.com/react-navigation/react-navigation/issues/12237
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
