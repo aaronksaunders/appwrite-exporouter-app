@@ -1,4 +1,4 @@
-import { Image, StyleSheet, View, Text, Button } from "react-native";
+import { Image, StyleSheet, View, Text, Button, Pressable } from "react-native";
 import { useSession } from "@/context";
 import { useRouter } from "expo-router";
 import { logout } from "@/lib/appwrite-service";
@@ -18,11 +18,16 @@ export default function HomeScreen() {
   };
 
   return (
-    <View style={{ flex: 1, padding: 16 }}>
-      <Text>Hello World</Text>
+    <View style={{ flex: 1, padding: 16 }} className="bg-blue-400">
+      <Text className="font-bold">Hello World</Text>
       <Text>{user?.name}</Text>
       <Text>{user?.email}</Text>
-      <Button title="Sign Out" onPress={handleSignOut} />
+      <Pressable
+        className="border border-white w-24 rounded text-sm mt-2"
+        onPress={handleSignOut}
+      >
+        <Text className="text-sm text-white font-bold mx-auto py-1">Sign Out</Text>
+      </Pressable>
     </View>
   );
 }
