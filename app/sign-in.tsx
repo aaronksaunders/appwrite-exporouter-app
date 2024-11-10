@@ -12,9 +12,10 @@ export default function SignIn() {
 
   const handleLogin = async () => {
     try {
-      await signIn(email, password);
+      return await signIn(email, password);
     } catch (err) {
       console.log("[handleLogin] ==>", err);
+      return null;
     }
   };
 
@@ -26,6 +27,7 @@ export default function SignIn() {
         onChangeText={setEmail}
         textContentType="emailAddress"
         keyboardType="email-address"
+        autoCapitalize="none"
         style={{
           padding: 8,
           borderColor: "black",
@@ -64,8 +66,9 @@ export default function SignIn() {
           borderRadius: 8,
           fontWeight: "bold",
         }}
-        onPress={() => {
-          handleLogin();
+        onPress={async () => {
+          const resp = await handleLogin();
+          console.log("[SignIn] resp ==>", resp);
           // Navigate after signing in. You may want to tweak this to ensure sign-in is
           // successful before navigating.
           router.replace("/");

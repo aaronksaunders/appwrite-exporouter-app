@@ -1,7 +1,13 @@
-import { Redirect } from "expo-router";
-import { Text } from "react-native";
+import { useSession } from "@/context";
+import { logout } from "@/lib/appwrite-service";
+import { Redirect, useRouter } from "expo-router";
+import { Button, Text, View } from "react-native";
 
 export default function Index() {
   console.log("[app Index]");
-  return <Text>Hello World</Text>;
+
+  return (
+
+    <Redirect href="/(app)/tabs" />
+  );
 }

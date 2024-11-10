@@ -1,35 +1,29 @@
-import { Image, StyleSheet, View, Text } from "react-native";
-import ParallaxScrollView from "@/components/ParallaxScrollView";
+import { Image, StyleSheet, View, Text, Button } from "react-native";
 import { useSession } from "@/context";
 import { useRouter } from "expo-router";
+import { logout } from "@/lib/appwrite-service";
 
 export default function HomeScreen() {
-  const { session, signOut } = useSession();
   const router = useRouter();
+  const { user, session } = useSession();
+
+  const handleSignOut = async () => {
+    try {
+      await logout();
+      return router.replace("/sign-in");
+    } catch (err) {
+      console.log("[handleSignOut] ==>", err);
+      return null;
+    }
+  };
 
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: "#A1CEDC", dark: "#1D3D47" }}
-      headerImage={
-        <Image
-          source={require("@/assets/images/partial-react-logo.png")}
-          style={styles.reactLogo}
-        />
-      }
-    >
-      <View style={styles.stepContainer}>
-        <Text>{JSON.stringify(session)}</Text>
-        <Text
-          onPress={async () => {
-            console.log("logout");
-            await signOut();
-            router.replace("/sign-in");
-          }}
-        >
-          LOGOUT
-        </Text>
-      </View>
-    </ParallaxScrollView>
+    <View style={{ flex: 1, padding: 16 }}>
+      <Text>Hello World</Text>
+      <Text>{user?.name}</Text>
+      <Text>{user?.email}</Text>
+      <Button title="Sign Out" onPress={handleSignOut} />
+    </View>
   );
 }
 
