@@ -31,6 +31,9 @@
     "plugins": ["expo-router"],
     "experiments": {
       "typedRoutes": true
+    },
+    "developmentClient": {
+      "silentLaunch": true
     }
   }
 }
