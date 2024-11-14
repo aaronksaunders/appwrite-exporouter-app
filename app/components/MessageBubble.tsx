@@ -42,6 +42,7 @@ const MessageBubble: React.FC<MessageBubbleProps> = ({
 
   return (
     <View
+      key={message.$id}
       className={`flex-row m-2 ${
         isCurrentUser ? "justify-end" : "justify-start"
       }`}

@@ -74,7 +74,7 @@ export default function TabTwoScreen() {
               isCurrentUser={item.owner_id === user?.$id} // Check if the message is from the current user
             />
           )}
-          keyExtractor={(item) => item.id}
+          keyExtractor={(item) => item.$id}
         />
 
         {/* Display selected image */}
@@ -90,17 +90,19 @@ export default function TabTwoScreen() {
           </View>
         )}
 
-        {/* Footer with text input and buttons */}
-        <View className="absolute bottom-0 left-0 right-0 p-4 bg-white flex-row items-center border-t border-gray-300">
+        <View className="absolute bottom-0 left-0 right-0 p-4 pr-1 bg-white flex-row border-t border-gray-300">
           <TextInput
-            className="flex-1 border border-gray-300 rounded-lg p-2"
+            className="flex-1 border border-gray-300 rounded-lg p-2 w-[80%]"
             placeholder="Enter your message"
             value={newMessage}
             onChangeText={setNewMessage}
           />
-          <View className="flex-row items-center ml-2">
-            <TouchableOpacity onPress={handleSendMessage} className="mr-2">
-              <Icon name="send-outline" size={30} color="black" />
+          <View className="flex-row items-center w-[20%]">
+            <TouchableOpacity
+              onPress={handleSendMessage}
+              className="mr-1 ml-2 items-center"
+            >
+              <Icon name="paper-plane-outline" size={24} color={"gray"} />
             </TouchableOpacity>
             <ActionSheetProvider>
               <ImagePickerButton onImagePicked={setSelectedImage} />

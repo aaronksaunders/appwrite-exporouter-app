@@ -23,7 +23,7 @@ const MessageContent: React.FC<MessageContentProps> = ({
   const [modalVisible, setModalVisible] = useState(false);
 
   return (
-    <View>
+    <View key={message.$id}>
       {message.body && (
         <Text
           className={`text-xs ${isCurrentUser ? "text-white" : "text-black"}`}
